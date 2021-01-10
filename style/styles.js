@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
             flexDirection: 'row'
         },
         dimensionsOfCats: {
-            height: 40, 
-            width: 40,
+            height: 50, 
+            width: 50,
             marginLeft: 1
         },
         animatedBackgroudOfFirstScreen: {

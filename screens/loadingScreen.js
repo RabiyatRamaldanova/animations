@@ -8,7 +8,7 @@ const catsWidth = styles.dimensionsOfCats.width;
 const catsQuantity = Math.floor(deviceWidth/(catsWidth));
 
     const array = [];
-    for(let i = 0; i<catsQuantity; i++) {
+    for(let i = 0; i< catsQuantity; i++) {
         array.push(i);
     }
 
@@ -19,7 +19,7 @@ export default class Loading extends Component {
         array.forEach((value) => {
         this.animatedValue[value] = new Animated.Value(0);
         })
-    }
+    } 
 
     componentDidMount () {
         this.animate()
