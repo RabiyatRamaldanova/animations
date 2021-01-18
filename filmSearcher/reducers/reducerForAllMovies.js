@@ -2,6 +2,7 @@ export const initialState = {
     title: "rabbit", 
     arrayOfData: [],
     isAnimationPlaying: false,
+    reachable: false
 };
 
 function reducerForAllMovies(state = initialState, action) {
@@ -19,6 +20,11 @@ function reducerForAllMovies(state = initialState, action) {
             return {
                 ...state,
                 isAnimationPlaying: action.payload
+            }
+        case 'SET_REACHABLE':
+            return {
+                ...state,
+                reachable: action.payload
             }
         default:
         return state;

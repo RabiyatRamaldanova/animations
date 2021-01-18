@@ -3,10 +3,10 @@ export const setTitle = (title) => ({
     payload: title,
 })
 
-// export const setReachable = (isReachable) => ({
-//     type: 'SET_REACHABLE',
-//     payload: isReachable
-// })
+export const setReachable = (isReachable) => ({
+    type: 'SET_REACHABLE',
+    payload: isReachable
+})
 
 export const setFavourite = (title, image) => ({
     type: 'SET_FAVORITE_ARRAY',

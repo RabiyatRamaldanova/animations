@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import {setTitle, setFavourite, getMovie, setReachable} from '../actions/action1';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Loading from '../../animationScreens/loadingScreen';
+import NetInfo from "@react-native-community/netinfo";
 
 class AllFilms extends Component {
 
@@ -12,8 +13,18 @@ class AllFilms extends Component {
 
   componentDidMount(){
     this.props.getMovie(this.props.title);
+    this.changeReachableProps();
   }
 
+  componentWillUnmount() {
+    this.changeReachableProps();
+  }
+
+  changeReachableProps = () => {
+    NetInfo.addEventListener( state => {
+      this.props.changeReachable(state)
+    });
+  }
   checkForFavorite(title, image) {
   const name = this.props.array.filter(name => name.favoriteMovieTitle === title);
   const img = this.props.array.filter(picture => picture.favoriteMovieImage === image);
@@ -76,6 +87,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return{
+    changeReachable: (isReachable) => dispatch(setReachable(isReachable)),
     getMovie: (title) => dispatch(getMovie(title)),
     changeTitle: title => dispatch(setTitle(title)),
     changeArrayOfFavorite: (data, image) => dispatch(setFavourite(data, image)),

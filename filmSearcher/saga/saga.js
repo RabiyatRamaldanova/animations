@@ -1,4 +1,4 @@
-import {takeEvery, put, call} from 'redux-saga/effects';
+import {takeEvery, put, call, select} from 'redux-saga/effects';
 import {GET_ARRAY, setAnimation} from '../actions/action1';
 import {getMovieAfter} from '../actions/action1';
 import NetInfo from "@react-native-community/netinfo";
@@ -22,19 +22,19 @@ function fetchData(title) {
     }
 }
 
- 
-  //   var reachable = null;
-
-  // reachable = NetInfo.isInternetReachable()
-  
   
 
 export function* workerLoadData(title) {
-  yield put(setAnimation(true));
+  const reachableConnection = yield select((state) => state.reducerForAllMovies.reachable);
+  if(reachableConnection == false) {
+    yield put(setAnimation(true));
   const data = yield call(fetchData(title));
   yield put(setAnimation(false));
   yield put(getMovieAfter(data));
-
+  }
+  else {
+    alert("No internet connection!");
+  }
 }
 
 export function* watcherLoadData() {
